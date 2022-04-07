@@ -19,12 +19,14 @@
         <![endif]-->
         
         <script src="collider.js" async defer></script>
+        <script src="common.js" async defer></script>
 
         <div id="content">
             <div id="card">
-                <p class="heading">Heading</p>
+                <p id="heading">Heading</p>
                 <p class="subheading">Subheading</p>
-                <button>SIMILAR</button><button>COPY</button>
+                <button onclick="generatePassword()">SIMILAR</button>
+                <button onclick="updateComplexity()">COPY</button>
             </div>
         </div>
         <div id="footer">

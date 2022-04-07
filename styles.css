@@ -21,7 +21,7 @@ body {
 	width: 70vw;
 }
 
-.heading {
+#heading {
 	font-family: Roboto, sans-serif;
 	font-size: 1.25rem;
 	font-weight: 500;
