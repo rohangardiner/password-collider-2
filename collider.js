@@ -60,7 +60,7 @@ function generatePassword() {
       password = randWord("caps")+delim+randWord("caps")+delim+randWord("caps")+delim+randWord("caps")+randNum(2);
       break;
     case 8:
-      password = randWord("caps","randcaps")+delim+randWord("caps","randcaps")+delim+randWord("caps","randcaps")+delim+randWord("caps","leet")+randNum(3);
+      password = randWord("caps")+delim+randWord("caps","randcaps")+delim+randWord("caps","randcaps")+delim+randWord("caps","leet")+randNum(3);
       break;
     case 9:
       password = randWord("caps","randcaps")+delim+randWord("caps","randcaps","leet")+delim+randWord("caps","randcaps","leet")+delim+randWord("caps","randcaps")+randNum(4);
@@ -88,11 +88,13 @@ function randWord() {
 
   // Check for modifiers passed in the generatePassword switch
   for (var i = 0; i < arguments.length; i++) {
-    if (arguments[i]==="caps") {
+    if (arguments[i]==="randcaps") {
+      newWord = newWord.split('').map(function(character){
+        return character[Math.round(Math.random()*0.6)?'toUpperCase':'toLowerCase']();
+      }).join('');
+    } else if (arguments[i]==="caps") {
       // Capitalize, comrade
       newWord = newWord[0].toUpperCase()+newWord.substring(1);
-    } else if (arguments[i]==="randcaps") {
-      // Random caps
     } else if (arguments[i]==="leet") {
       // Leet speak
       var leetness = Math.floor(Math.random() * 4);
