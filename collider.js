@@ -81,10 +81,8 @@ function generatePassword() {
 function randWord() {
   // Get array of common words
   var commonwords_array = commonwords.split(",");
-  const commonwords_arrayLength = commonwords_array.length;
   // Roll random number and pick that index word from big list
-  const wordIndex = Math.round(Math.random() * commonwords_arrayLength)
-  let newWord = commonwords_array[wordIndex];
+  let newWord = commonwords_array[(Math.round(Math.random() * commonwords_array.length))];
 
   // Check for modifiers passed in the generatePassword switch
   for (var i = 0; i < arguments.length; i++) {
@@ -150,32 +148,38 @@ function copyPassword() {
 }
 
 function bulkGenerate(amount) {
+  // Save the current displayed password to insert later, seamless!
+  var savepasword = password;
+
   //Create an empty element to hold download link
   var elemDiv = document.createElement('a');
-    elemDiv.download = 'passphrase.csv';
-    elemDiv.id = 'downloadlink';
-    document.body.appendChild(elemDiv);
+  elemDiv.download = 'passphrase.csv';
+  elemDiv.id = 'downloadlink';
+  document.body.appendChild(elemDiv);
 
-    // Generate string of passwords, comma-delimited
-    var outputstring = "";
-    var textFile = null;
-    for (var i = 0; i < amount; i++) {
-      generatePassword()
-      outputstring += password + ",";
+  // Generate string of passwords, comma-delimited
+  var outputstring = "";
+  var textFile = null;
+  for (var i = 0; i < amount; i++) {
+    generatePassword()
+    outputstring += password + ",";
+  }
+
+  // Logic to create text file from comma-delimited string
+  function makeTextFile(text) {
+    var data = new Blob([text], {type: 'text/csv;charset=utf-8;' });
+    if (textFile !== null) {
+      window.URL.revokeObjectURL(textFile);
     }
+    textFile = window.URL.createObjectURL(data);
+    return textFile;
+  };
 
-    // Logic to create text file from comma-delimited string
-    function makeTextFile(text) {
-      var data = new Blob([text], {type: 'text/csv;charset=utf-8;' });
-      if (textFile !== null) {
-        window.URL.revokeObjectURL(textFile);
-      }
-      textFile = window.URL.createObjectURL(data);
-      return textFile;
-    };
+  // Find the created download link and simulate click
+  var link = document.getElementById('downloadlink');
+  link.href = makeTextFile(outputstring);
+  elemDiv.click();
 
-    // Find the created download link and simulate click
-      var link = document.getElementById('downloadlink');
-      link.href = makeTextFile(outputstring);
-      elemDiv.click();
+  // Set the displayed password back to what we had before, seamless!
+  document.getElementById("heading").innerHTML = savepasword;
 }
