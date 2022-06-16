@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/healthit/public_html/webdev/passphrase 
+    - /bin/cp -R / $DEPLOYPATH
