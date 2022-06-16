@@ -1,2 +1,2 @@
 # password-collider-2
- Another one
+ Fun little password generator. Uses a list of common words to build a passphrase that's secure and memorable. Responsive.
