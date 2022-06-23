@@ -2,4 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/healthit/public_html/webdev/passphrase 
-    - /bin/cp -R ../ $DEPLOYPATH
+    - /bin/cp -R index.html $DEPLOYPATH
+    - /bin/cp -R collider.js $DEPLOYPATH
+    - /bin/cp -R styles.css $DEPLOYPATH
+    - /bin/cp -R common.js $DEPLOYPATH
