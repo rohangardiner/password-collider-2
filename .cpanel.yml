@@ -9,3 +9,9 @@ deployment:
     - /bin/cp -R img $DEPLOYPATH
     - /bin/cp -R js $DEPLOYPATH
     /bin/cp index.html $DEPLOYPATH
+    /bin/cp collider.js $DEPLOYPATH
+    /bin/cp common.js $DEPLOYPATH
+    /bin/cp styles.css $DEPLOYPATH
+    /bin/cp passlogo.png $DEPLOYPATH
+    /bin/cp passphrase-background-grey.png $DEPLOYPATH
+    /bin/cp passphrase-background.png $DEPLOYPATH
